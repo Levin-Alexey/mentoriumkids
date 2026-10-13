@@ -1,0 +1,98 @@
+<header class="uh-header" id="site-header">
+  <div class="uh-row">
+    <a class="uh-logo" href="/" aria-label="mentoriumAI, на главную">mentorium<span>AI</span></a>
+    <button class="uh-link uh-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="header-nav header-actions"><span class="uh-toggle-lines" aria-hidden="true"><i></i><i></i></span></button>
+    <nav class="uh-nav" id="header-nav" aria-label="Основная навигация">
+      <ul class="uh-list">
+        <li><a class="uh-link" href="#courses">Курсы</a></li>
+        <li><a class="uh-link" href="#about">О Школе</a></li>
+        <li><a class="uh-link" href="#reviews">Отзывы</a></li>
+        <li><a class="uh-link" href="#pricing">Стоимость</a></li>
+        <li><a class="uh-link" href="#blog">Блог</a></li>
+      </ul>
+      <div class="uh-account"><a class="uh-link" href="#">Войти <svg class="uh-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M9 15l6-6M9 9h6v6" stroke="currentColor" stroke-width="1.5"/></svg></a></div>
+    </nav>
+    <div class="uh-actions" id="header-actions">
+      <a class="uh-action uh-action--green" href="#free-lesson">Бесплатный урок</a>
+    </div>
+  </div>
+</header>
+
+<style is:global>
+  :root { --header-bg:#000; --cell-bg:#292929; --text:#fff; --blue:#26c6ff; --green:#a4f07a; --header-height:72px; --gap:4px; --page-width:none; }
+  .uh-header, .uh-header * { box-sizing:border-box; }
+  .uh-header button { font:inherit; cursor:pointer; }
+  .uh-header button, .uh-header a { -webkit-tap-highlight-color:transparent; }
+  .uh-header a { color:inherit; text-decoration:none; }
+  .uh-header [hidden] { display:none!important; }
+  .uh-header :focus-visible { outline:2px solid var(--blue); outline-offset:4px; }
+  .uh-header { position:sticky; top:0; z-index:100; padding:4px; background:var(--header-bg); color:var(--text); }
+  .uh-header.uh-compact { --header-height:56px; }
+  .uh-row { display:flex; align-items:stretch; gap:var(--gap); max-width:var(--page-width); margin:auto; }
+  .uh-logo { display:flex; flex:0 0 auto; padding:0 20px; font-size:25px; font-weight:700; letter-spacing:-1px; height:var(--header-height); align-items:center; justify-content:center; border-radius:2px; transition:height .3s,background .2s; }
+  .uh-logo span { color:var(--blue); }
+  .uh-logo:hover span { color:#000; }
+  .uh-logo:hover { color:#000; background:var(--blue); }
+  .uh-nav { display:flex; flex:1; min-width:0; gap:var(--gap); }
+  .uh-list { list-style:none; display:flex; gap:var(--gap); margin:0; padding:0; }
+  .uh-item { position:relative; }
+  .uh-link,.uh-action { display:flex; align-items:center; justify-content:center; gap:8px; padding:0 24px; height:var(--header-height); border:0; border-radius:2px; background:var(--cell-bg); color:var(--text); font-size:14px; font-weight:500; white-space:nowrap; transition:height .3s,background .2s,color .2s; }
+  .uh-link:hover,.uh-link[aria-expanded="true"],.uh-action:hover { background:#fff; color:#000; }
+  .uh-account { display:flex; flex:1; justify-content:flex-end; background:var(--cell-bg); border-radius:2px; }
+  .uh-arrow { width:24px; height:24px; }
+  .uh-actions { display:flex; gap:var(--gap); }
+  .uh-action--blue { background:var(--blue); color:#000; }
+  .uh-action--green { background:var(--green); color:#000; }
+  .uh-toggle { display:none; }
+  @media(min-width:1440px) { .uh-link,.uh-action { font-size:16px; } }
+  @media(max-width:1200px) and (min-width:1025px) { .uh-link,.uh-action { padding:0 14px; } }
+  @media(max-width:1024px) {
+    :root { --header-height:56px; }
+    .uh-row { flex-wrap:wrap; }
+    .uh-logo { margin-right:auto; }
+    .uh-toggle { display:flex; padding:0 18px; }
+    .uh-toggle-lines { width:18px; display:grid; gap:4px; }
+    .uh-toggle-lines i { height:2px; background:currentColor; transition:transform .2s; }
+    .uh-toggle[aria-expanded="true"] i:first-child { transform:translateY(3px) rotate(45deg); }
+    .uh-toggle[aria-expanded="true"] i:last-child { transform:translateY(-3px) rotate(-45deg); }
+    .uh-nav { display:none; order:3; flex:0 0 100%; flex-direction:column; max-height:calc(100dvh - 72px); overflow:auto; }
+    .uh-header.uh-mobile-open .uh-nav { display:flex; }
+    .uh-list { flex-direction:column; }
+    .uh-link { width:100%; justify-content:space-between; }
+    .uh-account { flex:none; }
+    .uh-actions { margin-left:0; }
+    .uh-action { padding:0 16px; }
+  }
+  @media(max-width:540px) { .uh-actions { display:none; order:4; width:100%; } .uh-header.uh-mobile-open .uh-actions { display:flex; } .uh-actions>* { flex:1; } .uh-action { padding:0 10px; font-size:13px; } }
+  @media(prefers-reduced-motion:reduce) { .uh-header * { transition:none!important; } }
+</style>
+
+<script is:inline>
+  (() => {
+    const header = document.querySelector('.uh-header');
+    const toggle = header.querySelector('.uh-toggle');
+    const closeMobile = () => {
+      header.classList.remove('uh-mobile-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Открыть меню');
+    };
+    toggle.addEventListener('click', () => {
+      const open = !header.classList.contains('uh-mobile-open');
+      header.classList.toggle('uh-mobile-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    });
+    document.addEventListener('click', event => { if(!header.contains(event.target)) closeMobile(); });
+    document.addEventListener('keydown', event => {
+      if(event.key !== 'Escape') return;
+      if(header.classList.contains('uh-mobile-open')) { closeMobile(); toggle.focus(); }
+    });
+    header.addEventListener('focusout', () => queueMicrotask(() => {
+      if(!header.contains(document.activeElement)) closeMobile();
+    }));
+    header.addEventListener('click', event => { if(event.target.closest('a')) closeMobile(); });
+    matchMedia('(min-width:1025px)').addEventListener('change', closeMobile);
+    const updateScroll = () => header.classList.toggle('uh-compact', window.scrollY > 32);
+    window.addEventListener('scroll', updateScroll, { passive:true }); updateScroll();
+  })();
+</script>
