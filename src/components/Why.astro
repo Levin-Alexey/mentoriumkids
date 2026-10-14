@@ -3,6 +3,7 @@ const reasons = [
   {
     id: 'projects',
     color: '#ffbf17',
+    topic: 'ПРАКТИКА',
     title: 'Свои проекты вместо скучной теории',
     summary: 'Ребёнок применяет новые знания в играх, историях и чат-ботах. Видит, что может создавать сам.',
     copy: 'Учиться интереснее, когда у каждого нового навыка есть понятное применение. Мы связываем программирование, нейросети и творчество с идеями самого ребёнка. Работа над проектом помогает пройти путь от замысла до результата и понять, как всё устроено.',
@@ -12,6 +13,7 @@ const reasons = [
   {
     id: 'thinking',
     color: '#ffa5ec',
+    topic: 'МЫШЛЕНИЕ ИИ',
     title: 'ИИ помогает думать самостоятельно',
     summary: 'Учимся задавать вопросы, сравнивать ответы и замечать ошибки нейросетей.',
     copy: 'Нейросеть может предложить идею, но решение остаётся за ребёнком. На занятиях разбираем, почему ответ ИИ может быть неточным, как уточнить запрос и где искать подтверждение. Важно не только получить результат, но и суметь объяснить его своими словами.',
@@ -21,6 +23,7 @@ const reasons = [
   {
     id: 'path',
     color: '#26c6ff',
+    topic: 'ОБУЧЕНИЕ',
     title: 'Понятный путь обучения',
     summary: 'Двигаемся от простых заданий к более сложным, связывая новые темы с уже знакомыми.',
     copy: 'Сложную тему легче освоить небольшими шагами. Сначала разбираем понятный пример, затем пробуем изменить его и только потом решаем свою задачу. Программирование и работа с ИИ становятся последовательным процессом, а не набором случайных приёмов.',
@@ -30,6 +33,7 @@ const reasons = [
   {
     id: 'support',
     color: '#5afda5',
+    topic: 'ПОДДЕРЖКА',
     title: 'Поддержка без страха ошибиться',
     summary: 'Объясняем сложное простыми словами и помогаем искать решение, а не делать за ребёнка.',
     copy: 'Ошибка в коде или неудачный запрос к ИИ становятся поводом для исследования. Разбираем, что произошло, задаём наводящие вопросы и предлагаем попробовать другой способ. Ребёнок учится обращаться за помощью и сохранять самостоятельность.',
@@ -39,6 +43,7 @@ const reasons = [
   {
     id: 'safety',
     color: '#ffbf17',
+    topic: 'БЕЗОПАСНОСТЬ',
     title: 'Осознанная работа с нейросетями',
     summary: 'Обсуждаем личные данные, авторство и правила использования ИИ на понятных примерах.',
     copy: 'Знакомство с ИИ включает не только возможности, но и разумные границы. Объясняем, какие данные не стоит отправлять в чат, почему чужую работу нельзя выдавать за свою и как обсуждать сомнительные ответы со взрослым.',
@@ -48,6 +53,7 @@ const reasons = [
   {
     id: 'skills',
     color: '#fef95d',
+    topic: 'НАВЫКИ',
     title: 'Навыки за пределами экрана',
     summary: 'Развиваем логику, творчество и умение рассказывать о своей работе.',
     copy: 'Работа над цифровым проектом помогает формулировать задачу, разбивать её на части и оценивать результат. Ребёнок пробует разные подходы, аргументирует свой выбор и учится представлять идею так, чтобы её поняли другие.',
@@ -64,8 +70,17 @@ const reasons = [
       <h2 id="why-title">Почему выбирают нас</h2>
     </div>
     <div class="mw-track" id="why-track" role="region" aria-label="Преимущества школы" tabindex="0">
-      {reasons.map((reason) => (
+      {reasons.map((reason, index) => (
         <article class="mw-card" style={`--card-color:${reason.color}`}>
+          <div class="mw-card-top">
+            <span class="mw-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 2.75 14.7 9.3l6.55 2.7-6.55 2.7L12 21.25 9.3 14.7l-6.55-2.7L9.3 9.3 12 2.75Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="m19.2 2 .8 1.9 2 .8-2 .8-.8 2-.8-2-1.9-.8 1.9-.8.8-1.9Z" fill="currentColor" />
+              </svg>
+            </span>
+            <span class="mw-card-topic">{reason.topic} · {String(index + 1).padStart(2, '0')}</span>
+          </div>
           <h3>{reason.title}</h3>
           <p>{reason.summary}</p>
           <button
@@ -124,14 +139,20 @@ const reasons = [
   .mw-heading h2 { margin:22px 0 0; font-size:clamp(34px,4.5vw,62px); line-height:1.04; letter-spacing:-.05em; font-weight:750; text-wrap:balance; }
   .mw-track { display:flex; gap:18px; overflow:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding:8px 0 20px; }
   .mw-track::-webkit-scrollbar { display:none; }
-  .mw-card { flex:0 0 calc((100% - 36px)/3); scroll-snap-align:start; padding:30px 28px 24px; min-height:330px; background:var(--card-color); background:linear-gradient(145deg,color-mix(in srgb,var(--card-color) 90%,white),var(--card-color)); border:1px solid #0000000d; border-radius:8px; display:flex; flex-direction:column; align-items:flex-start; transition:transform .2s,box-shadow .2s; }
-  @media(hover:hover) { .mw-card:hover { transform:translateY(-4px); box-shadow:0 8px 16px #00000012; } }
-  .mw-card:focus-within { box-shadow:0 0 0 2px #111; }
-  .mw-card h3 { font-size:23px; line-height:1.22; font-weight:700; letter-spacing:-.025em; margin:0 0 24px; min-height:84px; }
-  .mw-card p { font-size:15px; line-height:1.55; margin:0 0 30px; color:#171717; }
-  .mw-more { display:inline-flex; gap:10px; align-items:center; min-height:44px; padding:8px 0; margin-top:auto; background:none; border:0; text-align:left; font-size:13px; font-weight:700; color:#000; cursor:pointer; }
-  .mw-plus { display:grid; place-items:center; width:28px; height:28px; border:1px solid #111; border-radius:2px; background:#fff; font-size:24px; font-weight:400; line-height:1; transition:background .2s,box-shadow .2s; }
-  .mw-more:hover .mw-plus { background:#ffffffe0; box-shadow:0 2px 4px #0002; }
+  .mw-card { position:relative; isolation:isolate; flex:0 0 calc((100% - 36px)/3); scroll-snap-align:start; overflow:hidden; padding:28px; min-height:370px; border:1px solid #ffffffd9; border-radius:20px; background:linear-gradient(145deg,#fff 8%,color-mix(in srgb,var(--card-color) 19%,white) 100%); box-shadow:0 8px 24px #182f4810,inset 0 1px #fff; display:flex; flex-direction:column; align-items:flex-start; transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s; }
+  .mw-card::before { content:""; position:absolute; z-index:-1; width:190px; height:190px; top:-92px; right:-62px; border-radius:50%; background:color-mix(in srgb,var(--card-color) 45%,white); filter:blur(4px); opacity:.65; transition:transform .35s,opacity .35s; }
+  .mw-card-top { width:100%; display:flex; align-items:center; justify-content:space-between; margin-bottom:30px; }
+  .mw-card-icon { width:52px; height:52px; display:grid; place-items:center; border:1px solid #ffffffc9; border-radius:16px; background:color-mix(in srgb,var(--card-color) 32%,white); color:#273b51; box-shadow:0 5px 14px #1b334414; }
+  .mw-card-icon svg { width:27px; height:27px; }
+  .mw-card-topic { padding:7px 10px; border:1px solid #24364b18; border-radius:999px; background:#ffffff82; color:#46566a; font-size:10px; font-weight:700; letter-spacing:.1em; }
+  @media(hover:hover) { .mw-card:hover { transform:translateY(-5px); box-shadow:0 18px 38px color-mix(in srgb,var(--card-color) 25%,#20354b20),inset 0 1px #fff; } .mw-card:hover::before { transform:scale(1.2); opacity:.85; } }
+  .mw-card:focus-within { box-shadow:0 0 0 2px #26374c,0 12px 28px #182f4818; }
+  .mw-card h3 { max-width:330px; font-size:clamp(21px,2vw,26px); line-height:1.18; font-weight:750; letter-spacing:-.04em; margin:0 0 14px; text-wrap:balance; }
+  .mw-card p { font-size:15px; line-height:1.65; margin:0 0 24px; color:#4b5563; }
+  .mw-more { display:inline-flex; gap:10px; align-items:center; min-height:44px; padding:6px 14px 6px 7px; margin-top:auto; border:1px solid #20354b20; border-radius:999px; background:#ffffffa8; text-align:left; font-size:13px; font-weight:700; color:#172337; cursor:pointer; transition:background .2s,border-color .2s,transform .2s; }
+  .mw-plus { display:grid; place-items:center; width:30px; height:30px; border:0; border-radius:50%; background:color-mix(in srgb,var(--card-color) 58%,white); font-size:21px; font-weight:400; line-height:1; transition:background .2s,transform .2s; }
+  .mw-more:hover { background:#fff; border-color:#20354b40; transform:translateX(2px); }
+  .mw-more:hover .mw-plus { background:var(--card-color); transform:rotate(90deg); }
   .mw-controls { margin:0; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:10px 0 38px; }
   .mw-counter { font-size:12px; letter-spacing:.08em; }
   .mw-arrows { display:flex; gap:4px; }
@@ -159,7 +180,9 @@ const reasons = [
     .mw-section { padding:72px 0 100px; }
     .mw-wrapper { width:calc(100% - 24px); padding:0 20px; }
     .mw-track { gap:12px; }
-    .mw-card { flex-basis:87%; min-height:330px; padding:26px 24px 20px; }
+    .mw-card { flex-basis:87%; min-height:350px; padding:24px; border-radius:18px; }
+    .mw-card-top { margin-bottom:24px; }
+    .mw-card h3 { font-size:24px; }
     dialog.mw-drawer { padding:24px 20px; border-left:0; }
     .mw-drawer-header h2 { font-size:27px; }
     .mw-drawer-copy { font-size:16px; }
@@ -169,7 +192,7 @@ const reasons = [
     .mw-example { padding:20px; }
     .mw-example p { padding:18px; }
   }
-  @media(prefers-reduced-motion:reduce) { .mw-drawer[open] { animation:none; } .mw-plus,.mw-card { transition:none; } }
+  @media(prefers-reduced-motion:reduce) { .mw-drawer[open] { animation:none; } .mw-plus,.mw-card,.mw-card::before,.mw-more { transition:none; } }
 </style>
 
 <script is:inline>
