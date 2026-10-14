@@ -1,0 +1,95 @@
+<section class="mh-hero" aria-labelledby="hero-title">
+  <div class="mh-clouds" aria-hidden="true">
+    <div class="mh-cloud mh-cloud--1"></div>
+    <div class="mh-cloud mh-cloud--2"></div>
+    <div class="mh-cloud mh-cloud--3"></div>
+    <div class="mh-cloud mh-cloud--4"></div>
+  </div>
+  <div class="mh-content">
+    <span class="mh-badge"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.4 6.6L19 10l-6.6 2.4L10 19l-2.4-6.6L1 10l6.6-2.4z"></path></svg>Школа ИИ и программирования для детей</span>
+    <h1 class="mh-title" id="hero-title">Учимся понимать ИИ.<br />И создавать своё.</h1>
+    <p class="mh-description">Нейросети, программирование и творчество. Помогаем детям думать самостоятельно, проверять ответы ИИ и воплощать свои идеи в играх, чат-ботах и других проектах.</p>
+    <div class="mh-buttons">
+      <a class="mh-button mh-button--pink" href="#free-lesson">Бесплатный урок <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle><path d="M8 12h8m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5"></path></svg></a>
+      <a class="mh-button mh-button--yellow" href="#courses">Посмотреть курсы <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"></path></svg></a>
+    </div>
+    <ul class="mh-principles" aria-label="Наш подход"><li>Думаем самостоятельно</li><li>Проверяем ответы ИИ</li><li>Создаём свои проекты</li></ul>
+  </div>
+  <button class="mh-motion" type="button" aria-pressed="false">Остановить облака</button>
+</section>
+
+<style is:global>
+  .mh-hero {
+    --cloud-image:url("/images/cloud.webp");
+    position:relative; isolation:isolate; overflow:hidden;
+    min-height:calc(100svh - 80px); margin:0;
+    padding:80px 24px 72px;
+    background:transparent;
+    color:#090909; display:flex; flex-direction:column; align-items:center;
+  }
+  .mh-clouds { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:-1; }
+  .mh-cloud {
+    position:absolute; left:0; width:var(--cloud-width); aspect-ratio:8 / 5;
+    background-image:var(--cloud-image); background-size:contain; background-repeat:no-repeat;
+    animation:mh-drift var(--duration) linear var(--delay) infinite;
+    will-change:transform;
+  }
+  .mh-cloud--1 { --cloud-width:clamp(260px,35vw,540px); --duration:85s; --delay:-37s; top:-110px; opacity:.95; }
+  .mh-cloud--2 { --cloud-width:clamp(160px,19vw,300px); --duration:110s; --delay:-95s; top:120px; opacity:.85; }
+  .mh-cloud--3 { --cloud-width:clamp(230px,28vw,430px); --duration:95s; --delay:-10s; top:47%; opacity:.78; }
+  .mh-cloud--4 { --cloud-width:clamp(190px,24vw,370px); --duration:120s; --delay:-82s; bottom:0; opacity:.65; }
+  @keyframes mh-drift {
+    from { transform:translateX(calc(100vw + var(--cloud-width))); }
+    to { transform:translateX(calc(-1 * var(--cloud-width))); }
+  }
+  .mh-hero.mh-paused .mh-cloud { animation-play-state:paused; }
+  .mh-content { width:100%; max-width:1180px; text-align:center; display:flex; flex-direction:column; align-items:center; }
+  .mh-badge { display:inline-flex; align-items:center; gap:8px; max-width:100%; padding:6px 10px; border:1px solid #111; border-radius:3px; background:linear-gradient(100deg,#b6edff,#ffd0ed); font-size:14px; line-height:1.4; }
+  .mh-badge svg { flex:none; width:15px; height:15px; }
+  .mh-title { margin:42px 0 24px; max-width:1120px; font-size:clamp(42px,6.1vw,88px); font-weight:750; letter-spacing:-.055em; line-height:1.06; text-wrap:balance; }
+  .mh-description { max-width:740px; margin:0; font-size:clamp(17px,1.65vw,22px); line-height:1.5; text-wrap:pretty; }
+  .mh-buttons { display:flex; justify-content:center; flex-wrap:wrap; gap:16px; margin-top:42px; }
+  .mh-button { display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:56px; padding:14px 24px; border:1px solid #171717; border-radius:4px; color:#000; font-size:16px; font-weight:500; text-decoration:none; transition:transform .2s,box-shadow .2s; }
+  .mh-button:hover { transform:translate(-3px,-3px); box-shadow:3px 3px 0 #111; }
+  .mh-button:active { transform:none; box-shadow:none; }
+  .mh-button--pink { background:#ffa9ed; }
+  .mh-button--yellow { background:#fff94f; }
+  .mh-button svg { width:22px; height:22px; flex:none; }
+  .mh-principles { margin:72px 0 0; display:flex; justify-content:center; flex-wrap:wrap; gap:12px 32px; padding:0; list-style:none; font-size:14px; font-weight:500; }
+  .mh-principles li { display:flex; align-items:center; gap:8px; }
+  .mh-principles li::before { content:""; width:7px; height:7px; border-radius:50%; background:#141414; }
+  .mh-motion { margin-top:36px; align-self:flex-end; border:1px solid #0003; padding:8px 12px; border-radius:3px; color:#333; background:#fff7; font:inherit; font-size:12px; cursor:pointer; }
+  .mh-motion:hover { background:#fff; }
+  @media(max-width:640px) {
+    .mh-hero { min-height:calc(100svh - 64px); padding:52px 20px 24px; }
+    .mh-badge { font-size:12px; }
+    .mh-title { margin-top:32px; font-size:clamp(36px,9vw,52px); }
+    .mh-buttons { width:100%; gap:12px; margin-top:30px; }
+    .mh-button { width:100%; max-width:340px; min-height:54px; }
+    .mh-principles { margin-top:42px; gap:12px 20px; font-size:13px; }
+    .mh-cloud--1 { top:-70px; }
+    .mh-cloud--2 { top:150px; opacity:.55; }
+    .mh-cloud--3 { top:50%; opacity:.5; }
+  }
+  @media(prefers-reduced-motion:reduce) {
+    .mh-cloud { animation:none; will-change:auto; }
+    .mh-cloud--1 { transform:translateX(45vw); }
+    .mh-cloud--2 { transform:translateX(-60px); }
+    .mh-cloud--3 { transform:translateX(80vw); }
+    .mh-cloud--4 { transform:translateX(5vw); }
+    .mh-button { transition:none; }
+    .mh-motion { display:none; }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const hero = document.querySelector('.mh-hero');
+    const motionButton = hero.querySelector('.mh-motion');
+    motionButton.addEventListener('click', () => {
+      const paused = hero.classList.toggle('mh-paused');
+      motionButton.setAttribute('aria-pressed', String(paused));
+      motionButton.textContent = paused ? 'Продолжить движение' : 'Остановить облака';
+    });
+  })();
+</script>

@@ -1,0 +1,269 @@
+---
+const reasons = [
+  {
+    id: 'projects',
+    color: '#ffbf17',
+    title: 'Свои проекты вместо скучной теории',
+    summary: 'Ребёнок применяет новые знания в играх, историях и чат-ботах. Видит, что может создавать сам.',
+    copy: 'Учиться интереснее, когда у каждого нового навыка есть понятное применение. Мы связываем программирование, нейросети и творчество с идеями самого ребёнка. Работа над проектом помогает пройти путь от замысла до результата и понять, как всё устроено.',
+    points: ['От идеи до работающего результата', 'Практика с понятной целью', 'Проекты по интересам ребёнка'],
+    example: 'Ребёнок придумывает персонажа, пишет для него историю с помощью ИИ и создаёт простую игру. Обсуждаем, какие решения он принял сам и что можно улучшить.',
+  },
+  {
+    id: 'thinking',
+    color: '#ffa5ec',
+    title: 'ИИ помогает думать самостоятельно',
+    summary: 'Учимся задавать вопросы, сравнивать ответы и замечать ошибки нейросетей.',
+    copy: 'Нейросеть может предложить идею, но решение остаётся за ребёнком. На занятиях разбираем, почему ответ ИИ может быть неточным, как уточнить запрос и где искать подтверждение. Важно не только получить результат, но и суметь объяснить его своими словами.',
+    points: ['Проверка фактов и ответов', 'Вопросы вместо слепого копирования', 'Умение объяснить своё решение'],
+    example: 'Просим ИИ объяснить природное явление. Ребёнок находит спорное утверждение, проверяет его по другому источнику и исправляет текст.',
+  },
+  {
+    id: 'path',
+    color: '#26c6ff',
+    title: 'Понятный путь обучения',
+    summary: 'Двигаемся от простых заданий к более сложным, связывая новые темы с уже знакомыми.',
+    copy: 'Сложную тему легче освоить небольшими шагами. Сначала разбираем понятный пример, затем пробуем изменить его и только потом решаем свою задачу. Программирование и работа с ИИ становятся последовательным процессом, а не набором случайных приёмов.',
+    points: ['Небольшие шаги и ясные задания', 'Повторение через практику', 'Переход к более сложным проектам'],
+    example: 'Сначала выводим сообщение в программе, затем добавляем выбор пользователя, а после собираем маленький интерактивный диалог.',
+  },
+  {
+    id: 'support',
+    color: '#5afda5',
+    title: 'Поддержка без страха ошибиться',
+    summary: 'Объясняем сложное простыми словами и помогаем искать решение, а не делать за ребёнка.',
+    copy: 'Ошибка в коде или неудачный запрос к ИИ становятся поводом для исследования. Разбираем, что произошло, задаём наводящие вопросы и предлагаем попробовать другой способ. Ребёнок учится обращаться за помощью и сохранять самостоятельность.',
+    points: ['Простые и наглядные объяснения', 'Обратная связь по работе', 'Ошибки как часть обучения'],
+    example: 'Если игра не запускается, вместе читаем сообщение об ошибке. Преподаватель подсказывает, куда посмотреть, а исправление ребёнок делает сам.',
+  },
+  {
+    id: 'safety',
+    color: '#ffbf17',
+    title: 'Осознанная работа с нейросетями',
+    summary: 'Обсуждаем личные данные, авторство и правила использования ИИ на понятных примерах.',
+    copy: 'Знакомство с ИИ включает не только возможности, но и разумные границы. Объясняем, какие данные не стоит отправлять в чат, почему чужую работу нельзя выдавать за свою и как обсуждать сомнительные ответы со взрослым.',
+    points: ['Бережное отношение к личным данным', 'Уважение к авторству', 'Обсуждение сомнительных ответов'],
+    example: 'Перед созданием истории меняем реальные имена и контакты на вымышленные. Разбираем, почему нейросети не нужен домашний адрес или номер телефона ребёнка.',
+  },
+  {
+    id: 'skills',
+    color: '#fef95d',
+    title: 'Навыки за пределами экрана',
+    summary: 'Развиваем логику, творчество и умение рассказывать о своей работе.',
+    copy: 'Работа над цифровым проектом помогает формулировать задачу, разбивать её на части и оценивать результат. Ребёнок пробует разные подходы, аргументирует свой выбор и учится представлять идею так, чтобы её поняли другие.',
+    points: ['Логика и решение задач', 'Творчество и поиск идей', 'Презентация собственной работы'],
+    example: 'После завершения проекта ребёнок показывает, как он работает, рассказывает о сложностях и предлагает, что хотел бы добавить в следующей версии.',
+  },
+];
+---
+
+<section class="mw-section" id="about" aria-labelledby="why-title">
+  <div class="mw-wrapper">
+    <div class="mw-heading">
+      <span class="mw-label">Подход MentoriumAI</span>
+      <h2 id="why-title">Почему выбирают нас</h2>
+    </div>
+    <div class="mw-track" id="why-track" role="region" aria-label="Преимущества школы" tabindex="0">
+      {reasons.map((reason) => (
+        <article class="mw-card" style={`--card-color:${reason.color}`}>
+          <h3>{reason.title}</h3>
+          <p>{reason.summary}</p>
+          <button
+            class="mw-more"
+            type="button"
+            data-reason={reason.id}
+            aria-haspopup="dialog"
+            aria-controls="why-drawer"
+            aria-label={`Узнать подробнее: ${reason.title}`}
+          ><span class="mw-plus" aria-hidden="true">+</span>Узнать подробнее</button>
+        </article>
+      ))}
+    </div>
+    <div class="mw-controls">
+      <span class="mw-counter" aria-live="polite" aria-atomic="true">01 / 06</span>
+      <div class="mw-arrows">
+        <button class="mw-arrow" type="button" data-direction="-1" aria-label="Предыдущие карточки" aria-controls="why-track">←</button>
+        <button class="mw-arrow" type="button" data-direction="1" aria-label="Следующие карточки" aria-controls="why-track">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<dialog class="mw-drawer" id="why-drawer" aria-labelledby="why-drawer-title">
+  <div class="mw-drawer-header">
+    <h2 id="why-drawer-title"></h2>
+    <button class="mw-close" type="button" aria-label="Закрыть подробности" autofocus>×</button>
+  </div>
+  <div class="mw-drawer-body"></div>
+</dialog>
+
+{reasons.map((reason) => (
+  <template id={`reason-${reason.id}`}>
+    <p class="mw-drawer-copy">{reason.copy}</p>
+    <ul class="mw-detail-grid">
+      {reason.points.map((point) => (
+        <li><span class="mw-check" aria-hidden="true">✓</span><span>{point}</span></li>
+      ))}
+    </ul>
+    <div class="mw-example">
+      <h3>Как это может выглядеть на занятии</h3>
+      <p>{reason.example}</p>
+    </div>
+  </template>
+))}
+
+<style is:global>
+  body { isolation:isolate; }
+  .mp-backdrop { position:fixed; inset:0; z-index:-1; pointer-events:none; background:linear-gradient(180deg,#37c8f1 0%,#88deec 42%,#d1efe2 76%,#f5fbdc 100%); }
+  .mp-backdrop-next { position:absolute; inset:0; opacity:var(--background-progress,0); background:linear-gradient(0deg,#ffffff66,#ffffff66),linear-gradient(30deg,#5afda5 0%,#fef95d 100%); }
+  .mw-section { background:transparent; margin:0 4px; padding:72px 0 100px; overflow:hidden; color:#080808; scroll-margin-top:90px; }
+  .mw-wrapper { position:relative; width:calc(100% - 72px); max-width:1480px; margin:auto; padding:0 44px; isolation:isolate; }
+  .mw-wrapper::before { content:""; position:absolute; z-index:-1; inset:0; border-radius:6px; background:#f7f7f7; }
+  .mw-heading { padding:52px 0 36px; margin:0; }
+  .mw-label { display:inline-block; background:#e6f4fa; border:1px solid #111; padding:3px 7px; font-size:13px; }
+  .mw-heading h2 { margin:22px 0 0; font-size:clamp(34px,4.5vw,62px); line-height:1.04; letter-spacing:-.05em; font-weight:750; text-wrap:balance; }
+  .mw-track { display:flex; gap:18px; overflow:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding:8px 0 20px; }
+  .mw-track::-webkit-scrollbar { display:none; }
+  .mw-card { flex:0 0 calc((100% - 36px)/3); scroll-snap-align:start; padding:30px 28px 24px; min-height:330px; background:var(--card-color); background:linear-gradient(145deg,color-mix(in srgb,var(--card-color) 90%,white),var(--card-color)); border:1px solid #0000000d; border-radius:8px; display:flex; flex-direction:column; align-items:flex-start; transition:transform .2s,box-shadow .2s; }
+  @media(hover:hover) { .mw-card:hover { transform:translateY(-4px); box-shadow:0 8px 16px #00000012; } }
+  .mw-card:focus-within { box-shadow:0 0 0 2px #111; }
+  .mw-card h3 { font-size:23px; line-height:1.22; font-weight:700; letter-spacing:-.025em; margin:0 0 24px; min-height:84px; }
+  .mw-card p { font-size:15px; line-height:1.55; margin:0 0 30px; color:#171717; }
+  .mw-more { display:inline-flex; gap:10px; align-items:center; min-height:44px; padding:8px 0; margin-top:auto; background:none; border:0; text-align:left; font-size:13px; font-weight:700; color:#000; cursor:pointer; }
+  .mw-plus { display:grid; place-items:center; width:28px; height:28px; border:1px solid #111; border-radius:2px; background:#fff; font-size:24px; font-weight:400; line-height:1; transition:background .2s,box-shadow .2s; }
+  .mw-more:hover .mw-plus { background:#ffffffe0; box-shadow:0 2px 4px #0002; }
+  .mw-controls { margin:0; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:10px 0 38px; }
+  .mw-counter { font-size:12px; letter-spacing:.08em; }
+  .mw-arrows { display:flex; gap:4px; }
+  .mw-arrow { width:40px; height:36px; border:1px solid #111; border-radius:2px; background:#fff; color:#000; font-size:20px; cursor:pointer; }
+  .mw-arrow:hover:not(:disabled) { background:#26c6ff; }
+  .mw-arrow:disabled { color:#bbb; border-color:#ccc; cursor:default; }
+  dialog.mw-drawer { position:fixed; inset:0 0 0 auto; margin:0; width:min(800px,100vw); max-width:100vw; height:100dvh; max-height:100dvh; padding:40px; border:0; border-left:4px solid #000; border-radius:0; overflow:auto; background:#fff; color:#080808; overscroll-behavior:contain; }
+  .mw-drawer[open] { animation:mw-slide-in .3s cubic-bezier(.2,.7,.2,1); }
+  .mw-drawer::backdrop { background:#0006; }
+  @keyframes mw-slide-in { from { transform:translateX(100%); } to { transform:translateX(0); } }
+  .mw-drawer-header { display:flex; align-items:flex-start; gap:16px; padding-right:54px; position:relative; margin-bottom:38px; }
+  .mw-drawer-header h2 { font-size:32px; line-height:1.15; letter-spacing:-.035em; margin:4px 0 0; }
+  .mw-close { position:absolute; right:0; top:0; width:40px; height:40px; display:grid; place-items:center; background:#fff; color:#000; border:1px solid #111; border-radius:3px; font-size:27px; font-weight:400; padding:0; cursor:pointer; }
+  .mw-close:hover { background:#f2f2f2; }
+  .mw-drawer-copy { font-size:18px; line-height:1.5; color:#272727; margin:0 0 36px; }
+  .mw-detail-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:0 0 36px; padding:0; list-style:none; }
+  .mw-detail-grid li { background:#f7f7f7; border-radius:3px; padding:16px; min-height:170px; display:flex; flex-direction:column; justify-content:space-between; gap:32px; font-size:15px; line-height:1.4; font-weight:700; }
+  .mw-check { display:grid; place-items:center; width:20px; height:20px; border:1px solid #111; border-radius:2px; background:var(--drawer-color); font-weight:400; }
+  .mw-example { padding:30px; background:var(--drawer-color); border-radius:3px; }
+  .mw-example h3 { font-size:24px; letter-spacing:-.03em; margin:0 0 22px; }
+  .mw-example p { background:#fff; margin:0; padding:24px; color:#222; font-size:16px; line-height:1.6; border-radius:3px; }
+  @media(min-width:1500px) { .mw-card { flex-basis:calc((100% - 54px)/4); } }
+  @media(max-width:900px) { .mw-card { flex-basis:calc((100% - 18px)/2); } .mw-wrapper { width:calc(100% - 48px); padding:0 28px; } }
+  @media(max-width:600px) {
+    .mw-section { padding:72px 0 100px; }
+    .mw-wrapper { width:calc(100% - 24px); padding:0 20px; }
+    .mw-track { gap:12px; }
+    .mw-card { flex-basis:87%; min-height:330px; padding:26px 24px 20px; }
+    dialog.mw-drawer { padding:24px 20px; border-left:0; }
+    .mw-drawer-header h2 { font-size:27px; }
+    .mw-drawer-copy { font-size:16px; }
+    .mw-detail-grid { grid-template-columns:1fr; gap:10px; }
+    .mw-detail-grid li { min-height:0; flex-direction:row; justify-content:flex-start; align-items:center; gap:14px; }
+    .mw-check { flex:none; }
+    .mw-example { padding:20px; }
+    .mw-example p { padding:18px; }
+  }
+  @media(prefers-reduced-motion:reduce) { .mw-drawer[open] { animation:none; } .mw-plus,.mw-card { transition:none; } }
+</style>
+
+<script is:inline>
+  (() => {
+    const section = document.querySelector('.mw-section');
+    const backdrop = document.querySelector('.mp-backdrop');
+    if (!section || !backdrop) return;
+
+    let scheduled = false;
+    const paint = () => {
+      const height = window.innerHeight;
+      const top = section.getBoundingClientRect().top;
+      const progress = Math.min(1, Math.max(0, (height * .9 - top) / (height * .85)));
+      const blend = progress * progress * (3 - 2 * progress);
+      backdrop.style.setProperty('--background-progress', blend.toFixed(4));
+      scheduled = false;
+    };
+    const schedule = () => {
+      if (!scheduled) {
+        scheduled = true;
+        requestAnimationFrame(paint);
+      }
+    };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    paint();
+
+    const drawer = document.getElementById('why-drawer');
+    const track = document.getElementById('why-track');
+    const cards = [...track.querySelectorAll('.mw-card')];
+    const buttons = [...section.querySelectorAll('.mw-arrow')];
+    const counter = section.querySelector('.mw-counter');
+    let previousOverflow = '';
+    let opener;
+
+    section.querySelectorAll('[data-reason]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.mw-card');
+        const template = document.getElementById(`reason-${button.dataset.reason}`);
+        if (!card || !template) return;
+        opener = button;
+        drawer.querySelector('#why-drawer-title').textContent = card.querySelector('h3').textContent;
+        drawer.querySelector('.mw-drawer-body').replaceChildren(template.content.cloneNode(true));
+        drawer.style.setProperty('--drawer-color', card.style.getPropertyValue('--card-color'));
+        previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        drawer.showModal();
+        drawer.scrollTop = 0;
+      });
+    });
+
+    drawer.querySelector('.mw-close').addEventListener('click', () => drawer.close());
+    let backdropPress = false;
+    drawer.addEventListener('pointerdown', (event) => {
+      const rect = drawer.getBoundingClientRect();
+      backdropPress = event.target === drawer && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom);
+    });
+    drawer.addEventListener('click', (event) => {
+      const rect = drawer.getBoundingClientRect();
+      if (backdropPress && event.target === drawer && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) drawer.close();
+      backdropPress = false;
+    });
+    drawer.addEventListener('close', () => {
+      document.body.style.overflow = previousOverflow;
+      opener?.focus({ preventScroll: true });
+    });
+
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const move = (direction) => {
+      if (cards.length < 2) return;
+      const distance = cards[1].offsetLeft - cards[0].offsetLeft;
+      track.scrollBy({ left: direction * distance, behavior: reduced.matches ? 'instant' : 'smooth' });
+    };
+    buttons.forEach((button) => button.addEventListener('click', () => move(Number(button.dataset.direction))));
+    track.addEventListener('keydown', (event) => {
+      if (event.target !== track) return;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        move(event.key === 'ArrowRight' ? 1 : -1);
+      }
+    });
+
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      buttons[0].disabled = track.scrollLeft <= 2;
+      buttons[1].disabled = track.scrollLeft >= max - 2;
+      const step = cards[1].offsetLeft - cards[0].offsetLeft;
+      if (!step) return;
+      const first = Math.min(cards.length, Math.round(track.scrollLeft / step) + 1);
+      const value = `${String(first).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
+      if (counter.textContent !== value) counter.textContent = value;
+    };
+    track.addEventListener('scroll', update, { passive: true });
+    new ResizeObserver(update).observe(track);
+    update();
+  })();
+</script>

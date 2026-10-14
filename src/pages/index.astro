@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Why from '../components/Why.astro';
 ---
 
 <!doctype html>
@@ -12,7 +14,11 @@ import Header from '../components/Header.astro';
     <title>Школа ИИ и программирования для детей</title>
   </head>
   <body>
+    <div class="mp-backdrop" aria-hidden="true"><div class="mp-backdrop-next"></div></div>
     <Header />
-    <main></main>
+    <main>
+      <Hero />
+      <Why />
+    </main>
   </body>
 </html>
